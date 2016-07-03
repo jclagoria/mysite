@@ -9,7 +9,6 @@ from taggit.models import Tag
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
 
-# Create your views here.
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post, status='published',
@@ -41,6 +40,7 @@ def post_detail(request, year, month, day, post):
                   {'post': post, 'comments': comments
                       , 'comment_form': comment_form, 'similar_posts': similar_posts})
 
+
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
     tag = None
@@ -62,11 +62,13 @@ def post_list(request, tag_slug=None):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/post/list.html', {'page': page, 'posts': posts, 'tag': tag})
 
+
 class PostListView(ListView):
     queryset = Post.published.all()
     context_object_name = 'posts'
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
 
 def post_share(request, post_id):
     # Retrive post by id

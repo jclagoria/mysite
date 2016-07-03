@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 
+
 class PublisedManager(models.Manager):
     def get_queryset(self):
         return super(PublisedManager, self)\
             .get_queryset()\
             .filter(status='published')
+
 
 class Post(models.Model):
     STAUTS_CHOICE = (
