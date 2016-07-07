@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^tag/(?P<tag_slug>[-\w]+)/$', views.post_list, name='post_list_by_tag'),
     url(r'^(?P<post_id>\d+)/share/$', views.post_share, name='post_share'),
     url(r'^feed/$', LatestPostFeed(), name='post_feed'),
+    url(r'^search/$', views.post_search(), name='post_search'),
 ]
